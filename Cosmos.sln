@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosmosSpeedTestApi", "CosmosSpeedTestApi\CosmosSpeedTestApi.csproj", "{5C16F704-52A9-404B-9CA8-C24212A02EEE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CdnSpa", "CdnSpa\CdnSpa.csproj", "{D2BD7E53-86ED-4C50-A090-3D284B1D9797}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C16F704-52A9-404B-9CA8-C24212A02EEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C16F704-52A9-404B-9CA8-C24212A02EEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C16F704-52A9-404B-9CA8-C24212A02EEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C16F704-52A9-404B-9CA8-C24212A02EEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2BD7E53-86ED-4C50-A090-3D284B1D9797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2BD7E53-86ED-4C50-A090-3D284B1D9797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2BD7E53-86ED-4C50-A090-3D284B1D9797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2BD7E53-86ED-4C50-A090-3D284B1D9797}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6DE9AEF7-B203-4178-9BAE-58A4B7AE448D}
+	EndGlobalSection
+EndGlobal

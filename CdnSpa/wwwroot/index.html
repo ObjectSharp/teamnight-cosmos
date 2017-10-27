@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Keep your fingers crossed</title>
+    <style>
+        #app { display:flex }
+        .col {
+            flex-grow: 1;
+            border:1px solid grey;
+            padding:20px;
+            margin:10px;
+        }
+        h1 {
+            margin-top: 0
+        }
+        canvas { border:solid 1px #eee }
+    </style>
+</head>
+<body>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+    <div id="app">
+        <div class="col">
+            <h1>Input</h1>
+            <input type="file" @change="processFile($event)" style="width:90px">
+            <div v-show="inputFile.selected">
+                <canvas id="inputCanvas"></canvas><br />
+                <input type="text" v-model="inputName" /><br />
+                <span>{{image.width}} x {{image.height}} = {{image.width*image.height}} pixels</span><br /><br />
+                chunk size: <input type="text" v-model="inputChunkSize" /><br />
+                randomize region: <input type="checkbox" v-model="inputRandomizeRegion" /><br />
+                <button v-on:click="sendPixelData" v-bind:disabled="sending">Send</button>
+            </div>
+        </div>
+
+        <div class="col">
+            <h1>East</h1>
+            <h3>Sent</h3>
+            <div><canvas id="eastSentCanvas"></canvas></div>
+            <h3>Received</h3>
+            <div><canvas id="eastCanvas"></canvas></div>
+            <h3>Checksum</h3>
+            <div v-show="eastGood"><img src="check-mark-8-xxl.png" style="width:50px" /></div>
+            <br />
+            <div><button v-on:click="refreshEast">Refresh</button></div>
+        </div>
+
+        <div class="col">
+            <h1>Central</h1>
+            <h3>Sent</h3>
+            <div><canvas id="centralSentCanvas"></canvas></div>
+            <h3>Received</h3>
+            <div><canvas id="centralCanvas"></canvas></div>
+            <h3>Checksum</h3>
+            <div v-show="centralGood"><img src="check-mark-8-xxl.png" style="width:50px" /></div>
+            <br />
+            <div><button v-on:click="refreshCentral">Refresh</button></div>
+        </div>
+
+        <div class="col">
+            <h1>West</h1>
+            <h3>Sent</h3>
+            <div><canvas id="westSentCanvas"></canvas></div>
+            <h3>Received</h3>
+            <div><canvas id="westCanvas"></canvas></div>
+            <h3>Checksum</h3>
+            <div v-show="westGood"><img src="check-mark-8-xxl.png" style="width:50px" /></div>
+            <br />
+            <div><button v-on:click="refreshWest">Refresh</button></div>
+        </div>
+    </div>
+
+    <script src="pixels.js"></script>
+    
+</body>
+</html>

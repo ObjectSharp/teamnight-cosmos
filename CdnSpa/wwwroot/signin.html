@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="google-signin-client_id" content="">
+    <title>Keep your fingers crossed</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
+
+    <div id="app">
+        <p>{{ message }}</p>
+        <button v-on:click="ping">Ping</button>
+    </div>
+
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue.js!'
+            },
+            methods: {
+                ping: function () {
+                    axios.get('https://novms.azurewebsites.net/api/ping', {
+                        params: {
+                            name: "Dave"
+                        }
+                    })
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error, a, b, c) {
+                            console.log(error);
+                        });
+                },
+                login: function () {
+                    hello('google').login();
+                }
+            }
+        });
+    </script>
+
+    <script>
+        var googleUser = {};
+        var startApp = function () {
+            gapi.load('auth2', function () {
+                // Retrieve the singleton for the GoogleAuth library and set up the client.
+                auth2 = gapi.auth2.init({
+                    client_id: "892941698059-363363o6spd9vvh7nt6n0u8raajtr94m.apps.googleusercontent.com",
+                    ux_mode: "redirect",
+                    cookiepolicy: 'single_host_origin',
+                    // Request scopes in addition to 'profile' and 'email'
+                    //scope: 'additional_scope'
+                });
+                //attachSignin(document.getElementById('customBtn'));
+
+            });
+        };
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+            console.log('Token: ' + googleUser.getAuthResponse().id_token);
+
+        }
+        window.onLoadCallback = function () {
+            startApp();
+        }
+    </script>
+</body>
+</html>
